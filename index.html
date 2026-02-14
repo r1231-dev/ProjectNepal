@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #ffdde7 0%, #ffbfd8 30%, #f7c9ff 55%, #fbe8ff 100%);
+      --bg-gradient-bright: radial-gradient(circle at top left, #ffd0e5 0%, #ff9bc5 32%, #f4a8ff 60%, #ffe6ff 100%);
+      --primary-pink: #ff4b9a;
+      --primary-pink-dark: #f1217c;
+      --soft-pink: #ffe9f6;
+      --soft-cream: #fff7fb;
+      --text-main: #4b1431;
+      --accent-gold: #ffd27a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-main);
+      background: var(--bg-gradient);
+      overflow-x: hidden;
+overflow-y: auto;
+
+      position: relative;
+      padding: 20px;
+      transition: background 0.6s ease, filter 0.6s ease;
+      background-size: 200% 200%;
+      animation: dreamyGlow 14s ease-in-out infinite;
+    }
+
+    body.accepted {
+      background: var(--bg-gradient-bright);
+      filter: brightness(1.05);
+    }
+
+    @keyframes dreamyGlow {
+      0% {
+        background-position: 0% 0%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+
+    .valentine-card {
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.85) 0, rgba(255, 255, 255, 0.75) 36%, rgba(255, 240, 249, 0.9) 100%);
+      border-radius: 32px;
+      padding: 40px 32px 32px;
+      padding-top: 30px;
+      max-width: 540px;
+      width: 100%;
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 22px 55px rgba(228, 74, 135, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.8);
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+    }
+
+    .valentine-card::before {
+      content: "For you";
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      padding: 4px 12px;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #e03f8b;
+      box-shadow: 0 4px 12px rgba(226, 70, 138, 0.25);
+    }   
+
+    .valentine-card::after {
+      content: "❤";
+      position: absolute;
+      left: -28px;
+      top: -20px;
+      font-size: 80px;
+      color: rgba(255, 162, 204, 0.4);
+      filter: blur(0.5px);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5.2vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+      background: linear-gradient(120deg, #8d4aeb, #722fbf, #531330);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .year {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: #c34f82;
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(214, 72, 135, 0.18);
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: #7b3456;
+      margin-bottom: 26px;
+      opacity: 0.9;
+    }
+
+    .buttons-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-top: 10px;
+      position: relative;
+      /* Give the NO button room to dodge (but keep it near YES) */
+      height: 170px;
+      min-height: 170px;
+      width: 100%;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 16px 30px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #yesBtn {
+      background:
+        radial-gradient(circle at 0 0, #ffe3f3 0, rgba(255, 255, 255, 0.3) 30%, transparent 55%),
+        linear-gradient(135deg, var(--primary-pink), #ff7bc4);
+      color: white;
+      box-shadow:
+        0 12px 24px rgba(255, 100, 180, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+    }
+
+    #yesBtn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 24px rgba(255, 100, 180, 0.7);
+    }
+
+    #yesBtn:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow: 0 6px 16px rgba(255, 100, 180, 0.7);
+    }
+
+    body.accepted #yesBtn {
+      background: linear-gradient(135deg, #ff87c5, #ffb0de);
+    }
+
+    /* Shine / blush highlight on YES when accepted */
+    body.accepted #yesBtn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.7), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: shine 1.8s ease-out forwards;
+    }
+
+    @keyframes shine {
+      from {
+        transform: translateX(-120%);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateX(0%);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(120%);
+        opacity: 0;
+      }
+    }
+
+    /* NO button (dodging) */
+    #noBtn {
+      background: white;
+      color: #c34f82;
+      border: 2px solid #ffb2d5;
+      box-shadow: 0 6px 16px rgba(198, 54, 113, 0.25);
+      position: absolute; /* required */
+      left: 0;
+      top: 0;
+      transform: none;
+      transition: left 0.12s cubic-bezier(0.2, 0.9, 0.2, 1),
+        top 0.12s cubic-bezier(0.2, 0.9, 0.2, 1),
+        transform 0.12s ease-out, opacity 0.25s ease-out;
+      will-change: left, top;
+      touch-action: none;
+    }
+
+    #noBtn:hover {
+      transform: translateY(-2px);
+    }
+
+    body.accepted #noBtn {
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    /* Cute message after YES */
+    .message {
+      margin-top: 26px;
+      font-size: 1rem;
+      color: #7b2349;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .message-line {
+      margin-bottom: 6px;
+    }
+
+    body.accepted .message {
+      opacity: 1;
+      transform: translateY(0);
+      animation: blush 1.4s ease-out;
+    }
+
+    @keyframes blush {
+      0% {
+        transform: translateY(12px) scale(0.97);
+        opacity: 0;
+      }
+      40% {
+        transform: translateY(0) scale(1.02);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* YES bounce when clicked */
+    .bounce {
+      animation: bounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(1);
+      }
+      35% {
+        transform: scale(1.15);
+      }
+      60% {
+        transform: scale(0.96);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Background floating hearts */
+    .floating-hearts {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .floating-hearts span {
+      position: absolute;
+      font-size: 16px;
+      color: rgba(255, 132, 180, 0.6);
+      animation: floatUp 12s linear infinite;
+      text-shadow:
+        0 0 20px rgba(255, 188, 214, 0.9),
+        0 4px 10px rgba(190, 41, 103, 0.3);
+    }
+
+    .floating-hearts span:nth-child(1) { left: 10%; animation-duration: 13s; animation-delay: 0s; font-size: 18px; }
+    .floating-hearts span:nth-child(2) { left: 25%; animation-duration: 11s; animation-delay: -3s; font-size: 14px; }
+    .floating-hearts span:nth-child(3) { left: 40%; animation-duration: 15s; animation-delay: -6s; font-size: 20px; }
+    .floating-hearts span:nth-child(4) { left: 60%; animation-duration: 12s; animation-delay: -2s; font-size: 17px; }
+    .floating-hearts span:nth-child(5) { left: 75%; animation-duration: 16s; animation-delay: -5s; font-size: 19px; }
+    .floating-hearts span:nth-child(6) { left: 88%; animation-duration: 14s; animation-delay: -8s; font-size: 15px; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(110vh) scale(0.8);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.7;
+      }
+      80% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1.05);
+        opacity: 0;
+      }
+    }
+
+    /* Hearts burst on YES */
+    .burst-heart {
+      position: fixed;
+      font-size: 18px;
+      color: #ff7abf;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      animation: heartBurst 1.1s ease-out forwards;
+      filter: drop-shadow(0 0 6px rgba(255, 120, 180, 0.7));
+    }
+
+    @keyframes heartBurst {
+      0% {
+        transform: translate(0, 0) scale(0.3) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    /* Subtle overall blush overlay on accept */
+    .blush-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 80%, rgba(255, 160, 190, 0.35), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 1;
+    }
+
+    .valentine-card {
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+}
+
+.message {
+  margin-top: 25px;
+  padding: 15px;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 16px;
+  display: none; /* show only after YES click */
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.message-line {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.highlight {
+  font-weight: bold;
+  font-size: 18px;
+  color: #e91e63;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+    body.accepted .blush-overlay {
+      opacity: 1;
+    }
+
+    @media (min-width: 1024px) {
+  .valentine-card {
+    max-width: 650px;
+    padding: 40px;
+  }
+
+  .message {
+    font-size: 18px;
+    line-height: 2;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="floating-hearts">
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+  </div>
+  <div class="blush-overlay"></div>
+
+  <main class="valentine-card">
+    <h1>Hey Cadet Keerthy, Will you be my Valentine? 💘</h1>
+    <div class="year" id="yearText"></div>
+    <div class="subtitle">NO kuduthu tha paren 👺</div>
+
+    <div class="buttons-row" id="buttonsRow">
+      <button id="yesBtn" type="button">YES 💖</button>
+      <button id="noBtn" type="button">NO</button>
+    </div>
+    
+    <div class="message" id="message">
+  <p class="message-line">
+    Yenakku theriyum nee YES dhaan kudupennu. Ini namma la yaaralum pirikka mudiyadhu.
+  </p>
+
+  <p class="message-line">
+    This is not that special I know, but it's a small effort from my side to say that I still love you even after every fight we go through.
+  </p>
+
+  <p class="message-line highlight">
+    I LOVE YOU SOOO MUCH DA AMMU ❤️💕  
+    Happy Valentine’s Day 💘
+  </p>
+</div>
+
+  </main>
+
+  <script>
+
+    const yearText = document.getElementById("yearText");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("message");
+    const buttonsRow = document.getElementById("buttonsRow");
+
+    // Set dynamic year
+    yearText.textContent = new Date().getFullYear();
+
+    const DODGE_THRESHOLD = 120;
+    // Keep NO within a cute range around YES (inside the buttons area)
+    const RING_MIN = 86;
+    const RING_MAX = 160;
+    const NO_PADDING_IN_AREA = 8;
+    const YES_NO_GAP = 14;
+
+    function clamp(n, min, max) {
+      return Math.max(min, Math.min(max, n));
+    }
+
+    function inflateRect(rect, padding) {
+      return {
+        left: rect.left - padding,
+        top: rect.top - padding,
+        right: rect.right + padding,
+        bottom: rect.bottom + padding,
+        width: rect.width + padding * 2,
+        height: rect.height + padding * 2,
+      };
+    }
+    
+    function rectsOverlap(a, b) {
+      return !(
+        a.right <= b.left ||
+        a.left >= b.right ||
+        a.bottom <= b.top ||
+        a.top >= b.bottom
+      );
+    }
+
+    function getYesCenter() {
+      const yesRect = yesBtn.getBoundingClientRect();
+      return {
+        x: yesRect.left + yesRect.width / 2,
+        y: yesRect.top + yesRect.height / 2,
+        rect: yesRect,
+      };
+    }
+
+    function setNoPositionInButtonsArea(left, top) {
+      // left/top are relative to buttonsRow
+      noBtn.style.left = `${left}px`;
+      noBtn.style.top = `${top}px`;
+    }
+
+    // Initial placement: next to YES (slightly right; if no room, left)
+    function placeNoButtonInitially() {
+      const areaRect = buttonsRow.getBoundingClientRect();
+      const yes = getYesCenter();
+
+      const noW = noBtn.offsetWidth;
+      const noH = noBtn.offsetHeight;
+
+      const rightCandidateCenterX =
+        yes.rect.right + YES_NO_GAP + noW / 2;
+      const leftCandidateCenterX =
+        yes.rect.left - YES_NO_GAP - noW / 2;
+      const centerY = yes.y;
+
+      let candidateCenterX = rightCandidateCenterX;
+      // If right side would go out of the buttons area, use left side
+      if (
+        candidateCenterX + noW / 2 >
+        areaRect.right - NO_PADDING_IN_AREA
+      ) {
+        candidateCenterX = leftCandidateCenterX;
+      }
+
+      const left = clamp(
+        candidateCenterX - areaRect.left - noW / 2,
+        NO_PADDING_IN_AREA,
+        areaRect.width - noW - NO_PADDING_IN_AREA
+      );
+      const top = clamp(
+        centerY - areaRect.top - noH / 2,
+        NO_PADDING_IN_AREA,
+        areaRect.height - noH - NO_PADDING_IN_AREA
+      );
+
+      setNoPositionInButtonsArea(left, top);
+    }
+
+    // Move NO away from the pointer, but only around YES (not across the screen)
+    function moveNoButton(pointerX, pointerY) {
+      if (document.body.classList.contains("accepted")) return;
+
+      const areaRect = buttonsRow.getBoundingClientRect();
+      const yes = getYesCenter();
+      const yesAvoid = inflateRect(yes.rect, YES_NO_GAP);
+
+      const noW = noBtn.offsetWidth;
+      const noH = noBtn.offsetHeight;
+
+      const tries = 30;
+
+      // Angle pointing away from cursor (so it "escapes")
+      const baseAngle = Math.atan2(yes.y - pointerY, yes.x - pointerX);
+
+      for (let i = 0; i < tries; i++) {
+        const jitter = (Math.random() - 0.5) * 1.2; // playful
+        const angle = baseAngle + jitter;
+        const radius = RING_MIN + Math.random() * (RING_MAX - RING_MIN);
+
+        const centerX = yes.x + Math.cos(angle) * radius;
+        const centerY = yes.y + Math.sin(angle) * radius;
+
+        const candidateLeft = centerX - areaRect.left - noW / 2;
+        const candidateTop = centerY - areaRect.top - noH / 2;
+
+        // Must stay inside the buttons area
+        if (
+          candidateLeft < NO_PADDING_IN_AREA ||
+          candidateTop < NO_PADDING_IN_AREA ||
+          candidateLeft > areaRect.width - noW - NO_PADDING_IN_AREA ||
+          candidateTop > areaRect.height - noH - NO_PADDING_IN_AREA
+        ) {
+          continue;
+        }
+
+        const candidateViewportRect = {
+          left: areaRect.left + candidateLeft,
+          top: areaRect.top + candidateTop,
+          right: areaRect.left + candidateLeft + noW,
+          bottom: areaRect.top + candidateTop + noH,
+          width: noW,
+          height: noH,
+        };
+
+        // Never overlap YES
+        if (rectsOverlap(candidateViewportRect, yesAvoid)) continue;
+
+        // Also keep it away from the cursor a bit (so it doesn't "jump under" it)
+        const dx = pointerX - centerX;
+        const dy = pointerY - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < DODGE_THRESHOLD + 30) continue;
+
+        setNoPositionInButtonsArea(candidateLeft, candidateTop);
+        return;
+      }
+
+      // Fallback: random within ring (still avoiding YES)
+      const randomAngle = Math.random() * Math.PI * 2;
+      const randomRadius = RING_MIN + Math.random() * (RING_MAX - RING_MIN);
+      const fallbackCenterX = yes.x + Math.cos(randomAngle) * randomRadius;
+      const fallbackCenterY = yes.y + Math.sin(randomAngle) * randomRadius;
+      const left = clamp(
+        fallbackCenterX - areaRect.left - noW / 2,
+        NO_PADDING_IN_AREA,
+        areaRect.width - noW - NO_PADDING_IN_AREA
+      );
+      const top = clamp(
+        fallbackCenterY - areaRect.top - noH / 2,
+        NO_PADDING_IN_AREA,
+        areaRect.height - noH - NO_PADDING_IN_AREA
+      );
+      setNoPositionInButtonsArea(left, top);
+    }
+
+    // Cursor dodge logic
+    window.addEventListener("pointermove", (e) => {
+      if (document.body.classList.contains("accepted")) return;
+
+      const rect = noBtn.getBoundingClientRect();
+      const btnX = rect.left + rect.width / 2;
+      const btnY = rect.top + rect.height / 2;
+
+      const dx = e.clientX - btnX;
+      const dy = e.clientY - btnY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < DODGE_THRESHOLD) {
+        moveNoButton(e.clientX, e.clientY);
+      }
+    });
+
+    // NO must never be clickable
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      moveNoButton(e.clientX ?? 0, e.clientY ?? 0);
+    });
+
+    noBtn.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      moveNoButton(e.clientX, e.clientY);
+    });
+
+    noBtn.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const t = e.touches && e.touches[0];
+        moveNoButton(t ? t.clientX : 0, t ? t.clientY : 0);
+      },
+      { passive: false }
+    );
+
+    // YES click behavior
+    yesBtn.addEventListener("click", () => {
+      if (document.body.classList.contains("accepted")) return;
+
+      document.body.classList.add("accepted");
+
+      // Bounce effect
+      yesBtn.classList.add("bounce");
+      yesBtn.addEventListener(
+        "animationend",
+        () => {
+          yesBtn.classList.remove("bounce");
+        },
+        { once: true }
+      );
+
+      // Make NO effectively impossible / gone
+      noBtn.style.pointerEvents = "none";
+      noBtn.style.opacity = "0";
+
+      // Show message (CSS handles animation)
+      message.style.display = "block";
+
+      // Hearts burst around YES
+      createHeartsBurst();
+    });
+
+    function createHeartsBurst() {
+      const yesRect = yesBtn.getBoundingClientRect();
+      const centerX = yesRect.left + yesRect.width / 2;
+      const centerY = yesRect.top + yesRect.height / 2;
+
+      const totalHearts = 18;
+      for (let i = 0; i < totalHearts; i++) {
+        const heart = document.createElement("div");
+        heart.className = "burst-heart";
+        heart.textContent = "💖";
+
+        // Random direction
+        const angle = (Math.PI * 2 * i) / totalHearts + (Math.random() - 0.5) * 0.6;
+        const distance = 60 + Math.random() * 60;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance * 0.8;
+
+        heart.style.left = `${centerX}px`;
+        heart.style.top = `${centerY}px`;
+        heart.style.setProperty("--dx", `${dx}px`);
+        heart.style.setProperty("--dy", `${dy}px`);
+
+        document.body.appendChild(heart);
+
+        heart.addEventListener(
+          "animationend",
+          () => {
+            heart.remove();
+          },
+          { once: true }
+        );
+      }
+    }
+
+    // Re-position NO button nicely on load & on resize
+    window.addEventListener("load", () => {
+      // Convert row to relative container so NO can move nicely at first
+      buttonsRow.style.position = "relative";
+      placeNoButtonInitially();
+    });
+
+    window.addEventListener("resize", () => {
+      if (!document.body.classList.contains("accepted")) {
+        placeNoButtonInitially();
+      }
+    });
+  </script>
+</body>
+</html>
